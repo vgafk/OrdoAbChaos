@@ -1,9 +1,10 @@
-from typing import Union, List, TYPE_CHECKING
+from typing import Union, List
 
 from sqlalchemy import select
 
 from attendance.types import Attendance #,  AttendanceType
-from sql import sql_models, get_session
+from sql import get_session
+from sql import sql_models
 
 
 # async def get_attendace_type(root) -> AttendanceType:

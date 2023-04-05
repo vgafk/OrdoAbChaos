@@ -1,14 +1,13 @@
 from datetime import datetime
-from typing import List, Optional
 import strawberry
 
 from disciplines.resolvers import get_discipline_for_schedule
-from disciplines.types import Discipline, SelectDisciplineResponse
+from disciplines.types import SelectDisciplineResponse
 from sql import Schedule
 # from groups.resolvers import get_group_for_schedule, get_subgroup_for_schedule
 # from groups.types import Group, Subgroup
 from teachers.resolvers import get_teacher_for_schedule
-from teachers.types import Teacher, SelectTeacherResponse
+from teachers.types import SelectTeacherResponse
 
 
 @strawberry.input

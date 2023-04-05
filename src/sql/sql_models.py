@@ -4,7 +4,7 @@ from typing import List
 from sqlalchemy import String, DateTime, Integer, func, ForeignKey
 from sqlalchemy.orm import Mapped, relationship, mapped_column
 
-from .local_base import Base
+from sql.local_base import Base
 
 
 class EducationalForm(Base):

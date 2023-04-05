@@ -1,10 +1,8 @@
-from typing import TYPE_CHECKING
-
 import strawberry
 
 from schedule.resolvers import get_lessons_by_id
 from schedule.types import Lesson
-from sql import Discipline, AttendanceType
+from sql import Discipline
 
 
 # @strawberry.type

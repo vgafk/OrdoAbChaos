@@ -1,14 +1,13 @@
-import asyncio
 from typing import List, Union
 from loguru import logger
 
-import strawberry
 from sqlalchemy import select
 
 from groups.types import Group
-from .types import StudentGetInput, Student
+from students.types import StudentGetInput, Student
 
-from sql import sql_models, get_session
+from sql import get_session
+from sql import sql_models
 
 
 async def get_students(where: Union[StudentGetInput | None] = None, root=None) -> List[Student]:

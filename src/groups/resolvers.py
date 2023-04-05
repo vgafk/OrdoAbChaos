@@ -1,11 +1,9 @@
-import asyncio
 from typing import Union, List
 
-import strawberry
 from sqlalchemy import select, and_
 from .types import Group, GroupGetInput, SubgroupGetInput, Subgroup
 
-from sql import sql_models, get_session
+from sql import get_session, sql_models
 
 
 async def get_groups(where: Union[GroupGetInput | None] = None) -> List[Group]:

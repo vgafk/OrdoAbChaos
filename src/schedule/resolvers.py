@@ -4,9 +4,9 @@ from typing import List
 from isoweek import Week
 from sqlalchemy import select, and_, insert
 
-from .types import ScheduleGetInput, Lesson
+from schedule.types import ScheduleGetInput, Lesson
 
-from sql import sql_models, get_session
+from sql import get_session, sql_models
 
 
 async def create_week_schedule(root: ScheduleGetInput):  # -> Schedule:

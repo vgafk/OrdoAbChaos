@@ -1,12 +1,8 @@
-import asyncio
-from typing import List, Union
-
-import strawberry
 from sqlalchemy import select
 
 
-from sql import sql_models, get_session
-from .types import SelectTeacherResponse, Teacher, TeacherNotFound
+from sql import get_session, sql_models
+from teachers.types import SelectTeacherResponse, Teacher, TeacherNotFound
 
 
 async def get_teacher_for_schedule(root) -> SelectTeacherResponse:

@@ -1,4 +1,4 @@
-from typing import Optional, List, TYPE_CHECKING, Annotated
+from typing import Optional, List
 import strawberry
 
 from schedule.resolvers import get_groups_lessons_by_group

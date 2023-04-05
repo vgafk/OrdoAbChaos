@@ -5,7 +5,6 @@ import strawberry
 from faculties.resolvers import get_faculties
 from faculties.types import Faculty
 from groups.types import Group, Subgroup
-from schedule.types import Lesson
 from students.resolvers import get_students
 from groups.resolvers import get_groups, get_subgroups
 from students.types import Student

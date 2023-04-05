@@ -1,10 +1,9 @@
 from typing import Union, List
 from loguru import logger
-import strawberry
 from sqlalchemy import select
 
 from .types import FacultiesGetInput, Faculty
-from sql import sql_models, get_session
+from sql import get_session, sql_models
 
 
 async def get_faculties(where: Union[FacultiesGetInput | None] = None) -> List[Faculty]:

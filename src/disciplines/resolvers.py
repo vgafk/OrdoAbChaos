@@ -1,6 +1,6 @@
 from sqlalchemy import select
 
-from sql import sql_models, get_session
+from sql import get_session, sql_models
 from .types import Discipline, SelectDisciplineResponse, DisciplineNotFound
 
 
