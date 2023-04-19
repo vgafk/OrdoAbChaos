@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, TYPE_CHECKING
 import strawberry
 
 from schedule.resolvers import get_groups_lessons_by_group
@@ -20,7 +20,7 @@ class Group:
     id: strawberry.ID
     name: str
     full_name: str
-    students: List[Student] = strawberry.field(resolver=get_student_for_group)
+    students: List["Student"] = strawberry.field(resolver=get_student_for_group)
     week_schedule: List[Lesson] = strawberry.field(resolver=get_groups_lessons_by_group)
 
     @classmethod
@@ -44,7 +44,7 @@ class Subgroup:
     id: strawberry.ID
     name: str
     comments: str
-    students: List[Student] = strawberry.field(resolver=get_student_for_subgroup)
+    students: List["Student"] = strawberry.field(resolver=get_student_for_subgroup)
 
     @classmethod
     def from_instance(cls, instance: Subgroup) -> "Subgroup":

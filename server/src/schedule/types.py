@@ -1,4 +1,6 @@
 from datetime import datetime
+from typing import List
+
 import strawberry
 
 from disciplines.resolvers import get_discipline_for_schedule

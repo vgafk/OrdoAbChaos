@@ -32,7 +32,7 @@ class Group(Base):
     faculty_id: Mapped[int] = mapped_column(ForeignKey('faculties.id'), nullable=False)
     educational_form_id: Mapped[int] = mapped_column(ForeignKey('educational_forms.id'))
 
-    faculty: Mapped[List['Faculty']] = relationship(back_populates='group')
+    faculty: Mapped['Faculty'] = relationship(back_populates='group')
     educational_form: Mapped["EducationalForm"] = relationship(back_populates='group')
     student_groups: Mapped['StudentGroup'] = relationship(back_populates="group", cascade='all')
     schedule: Mapped[List["Schedule"]] = relationship(back_populates='group', cascade='all')
@@ -48,6 +48,14 @@ class Subgroup(Base):
     schedule: Mapped[List["Schedule"]] = relationship(back_populates='subgroup', cascade='all')
 
 
+class FinanceForm(Base):
+    __tablename__ = 'finance_forms'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(10), nullable=False, unique=True)
+
+    student: Mapped[List["Students"]] = relationship(back_populates='finance_form')
+
+
 class Students(Base):
     __tablename__ = 'students'
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -55,11 +63,13 @@ class Students(Base):
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     middle_name: Mapped[str] = mapped_column(String(255), nullable=True)
     snils: Mapped[str] = mapped_column(String(14), nullable=True)
+    email: Mapped[str] = mapped_column(String(100), nullable=True)
+    finance_form_id: Mapped[int] = mapped_column(ForeignKey("finance_forms.id"), nullable=False)
+    add_date: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
 
     student_groups: Mapped[List['StudentGroup']] = relationship(back_populates="student", cascade='all')
     student_subgroups: Mapped[List['StudentSubgroups']] = relationship(back_populates="student", cascade='all')
-    add_date: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
-
+    finance_form: Mapped['FinanceForm'] = relationship(back_populates="student")
     attendance: Mapped[List['Attendance']] = relationship(back_populates='student', cascade='all')
 
 

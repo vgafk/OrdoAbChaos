@@ -8,7 +8,7 @@ from settings import settings
 
 engine = create_async_engine(f"{settings.LOCAL_BASE_DRIVER}://{settings.LOCAL_BASE_USER_NAME}:"
                              f"{settings.LOCAL_BASE_USER_PASSWORD}@{settings.LOCAL_BASE_HOST}/"
-                             f"{settings.LOCAL_BASE_NAME}", echo=True)
+                             f"{settings.LOCAL_BASE_NAME}", echo=False)
 
 async_session = async_sessionmaker(engine, expire_on_commit=False)
 

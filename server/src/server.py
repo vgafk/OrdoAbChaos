@@ -8,7 +8,7 @@ from api import Query, Mutation
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
-graphql_app = GraphQLRouter(schema)
+graphql_app = GraphQLRouter(schema)  # , graphiql=False)
 
 app = FastAPI()
 app.include_router(graphql_app, prefix="/graphql")

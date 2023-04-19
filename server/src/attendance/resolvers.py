@@ -1,8 +1,9 @@
-from typing import Union, List
+from typing import Union, List, Dict
 
-from sqlalchemy import select
+from loguru import logger
+from sqlalchemy import select, delete, update, insert
 
-from attendance.types import Attendance #,  AttendanceType
+from attendance.types import Attendance, AttendanceListInput  # ,  AttendanceType
 from sql import get_session
 from sql import sql_models
 
@@ -31,3 +32,30 @@ async def get_attendace_by_student(root, week_number: Union[int, None] = None) -
     async with get_session() as session:
         lessons_source = (await session.execute(stmt)).all()
     return [Attendance.from_instance(lesson[0]) for lesson in lessons_source]
+
+
+async def delete_attendance(ids: List[int]) -> None:
+    stmt = delete(sql_models.Attendance).where(sql_models.Attendance.id.in_(ids))
+    async with get_session() as session:
+        await session.execute(stmt)
+        await session.commit()
+
+
+async def update_attendance(alist: List[AttendanceListInput]) -> None:
+    logger.info(alist)
+    for attendance in alist:
+        stmt = update(sql_models.Attendance).where(sql_models.Attendance.id.in_(attendance.ids))\
+            .values(attendance_type_id=attendance.reason)
+        async with get_session() as session:
+            await session.execute(stmt)
+            await session.commit()
+
+
+async def add_attendance(alist: List[AttendanceListInput]) -> None:
+    logger.info(alist)
+    for attendance in alist:
+        stmt = insert(sql_models.Attendance).values(student_id=attendance.student_id, schedule_id=attendance.lesson_id,
+                                                    attendance_type_id=attendance.reason)
+        async with get_session() as session:
+            await session.execute(stmt)
+            await session.commit()

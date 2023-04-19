@@ -1,3 +1,5 @@
+from typing import List, Dict, Optional
+
 import strawberry
 
 from schedule.resolvers import get_lessons_by_id
@@ -30,6 +32,19 @@ class Attendance:
                    lesson_id=instance.schedule_id,
                    attendance_type_id=instance.attendance_type_id)
 
+@strawberry.input
+class AttendanceListInput:
+    reason: int
+    ids: Optional[List[int]] = strawberry.UNSET
+    lesson_id: Optional[int] = strawberry.UNSET
+    student_id: Optional[int] = strawberry.UNSET
+
+
+@strawberry.input
+class SaveDataInput:
+    deleted: List[int]
+    updated: List[AttendanceListInput]
+    added: List[AttendanceListInput]
 
 # @strawberry.type
 # class DisciplineNotFound:

@@ -50,4 +50,3 @@ async def get_groups_lessons_by_group(root, week_number: int) -> List[Lesson]:
     async with get_session() as session:
         lessons_source = (await session.execute(stmt)).all()
     return [Lesson.from_instance(lesson[0]) for lesson in lessons_source]
-
